@@ -187,15 +187,17 @@ class WeatherBox{
 
 let news
 let events
+let bg
+let img
 
 function preload() {
     news = loadJSON('News.json');
     events = loadJSON('Events.json')
     weight = loadJSON('Weight.json')
+    bg = loadImage('background.jpg');
   }
 
 function setup() {
-    background(50);
     createCanvas(1000, 1000);
     get_temp()
     tempBox = new WeatherBox(200, 100, 25, 12.5, 0)
@@ -210,7 +212,7 @@ function setup() {
     }
     console.log(newsTitle);
     console.log(newsText)
-    //newsBox = new Box(200, 400, 875, 12.5, 0, newsTitle, newsText);
+
     newsBox = new Box(200, 400, 775, 12.5, 0, newsTitle, newsText);
     eventsBox = new Box(200, 300, 775, 432.5, 0, eventsTitle, eventsText);
     let time = "";
@@ -230,6 +232,7 @@ function setup() {
 
 function draw(){
     clear();
+    image(bg, 0, 0);
     tempBox.display();
     time = hour() + ":" + minute();
     clockBox.text = time;
